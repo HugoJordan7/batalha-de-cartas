@@ -6,7 +6,7 @@ public class Tabuleiro {
 	
 	private Carta[][] matriz = new Carta[3][3];
 
-	public void registrarObserver(Carta carta, int i, int j) {
+	public void registrarCarta(Carta carta, int i, int j) {
 		matriz[i][j] = carta;
 	}
 	

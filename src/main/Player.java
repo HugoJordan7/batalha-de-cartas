@@ -22,4 +22,13 @@ public class Player {
 		}
 	}
 	
+	public void jogarCarta(int pos, Tabuleiro tabuleiro, int i, int j) {
+		if(i <= 2 && i >= 0 && j <= 2 && j >= 0) {
+			System.out.println("Posição do tabuleiro inválida!");
+		} else {
+			tabuleiro.registrarCarta(cartas[pos], i, j);
+		}
+		
+	}
+	
 }
