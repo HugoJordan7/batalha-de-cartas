@@ -8,33 +8,36 @@ public class Main{
 	
 	public static void main(String[] args) {
 		Util.imprimirApresentacao();
-		System.out.print("Informe o nome do player1: ");
-		String nome = "hugo";
-		Player player1 = new Player(nome);
-		System.out.print("Informe o nome do player2: ");
-		nome = "thiago";
-		Player player2 = new Player(nome);
-		
+		Player player1 = new Player("P1");
+		Player player2 = new Player("P2");
 		Tabuleiro tabuleiro = new Tabuleiro();
-		tabuleiro.destribuirCartas(player1);
-		tabuleiro.destribuirCartas(player2);
+		tabuleiro.distribuirCartas(player1);
+		tabuleiro.distribuirCartas(player2);
 		
-		
-		imprimirTabuleiro(tabuleiro);
-		imprimirCartasDoPlayer(player1);
-		realizarJogada(tabuleiro, player1);
-		imprimirTabuleiro(tabuleiro);
+		for(int i = 0; i<9; i++) {
+			Player currentPlayer;
+			if(i%2 == 0) {
+				currentPlayer = player1;
+			}else {
+				currentPlayer = player2;
+			}
+			imprimirTabuleiro(tabuleiro);
+			imprimirCartasDoPlayer(currentPlayer);
+			if(!realizarJogada(tabuleiro, currentPlayer)) {
+				i--;
+			}
+		}
 	
 	}
 	
-	public static void realizarJogada(Tabuleiro tabuleiro, Player player) {
+	public static boolean realizarJogada(Tabuleiro tabuleiro, Player player) {
 		System.out.print(player.getNome() + " escolha uma carta para jogar: ");
 		int pos = scanner.nextInt();
 		System.out.print("Informe a linha do tabuleiro: ");
 		int lin = scanner.nextInt();
 		System.out.print("Informe a coluna do tabuleiro: ");
 		int col = scanner.nextInt();
-		player.jogarCarta(pos, tabuleiro, lin, col);
+		return player.jogarCarta(pos, tabuleiro, lin, col);
 	}
 	
 	public static void imprimirTabuleiro(Tabuleiro tabuleiro) {

@@ -39,9 +39,10 @@ public class Player {
 		}
 	}
 	
-	public void jogarCarta(int pos, Tabuleiro tabuleiro, int i, int j) {
-		tabuleiro.registrarCarta(cartas.get(pos), i, j);
-		cartas.remove(pos);
+	public boolean jogarCarta(int pos, Tabuleiro tabuleiro, int i, int j) {
+		boolean isRegistred = tabuleiro.registrarCarta(cartas.get(pos), i, j);
+		if(isRegistred) cartas.remove(pos);
+		return isRegistred;
 	}
 
 	public int getScore() {

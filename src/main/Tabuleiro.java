@@ -22,28 +22,29 @@ public class Tabuleiro {
 		return matriz[i][j];
 	}
 
-	public void registrarCarta(Carta carta, int i, int j) {
-		if(!isIndexValid(i, j)) return;
+	public boolean registrarCarta(Carta carta, int i, int j) {
+		if(!isIndexValid(i, j)) return false;
 		if(matriz[i][j].getTop() != 0) {
 			System.out.println("O jogador não pode jogar uma carta em cima de outra!");
-			return;
+			return false;
 		} 
 		quantCartas++;
 		matriz[i][j] = carta;
 		analisarCartasProximas(carta, i, j);
+		return true;
 	}
 	
 	public void analisarCartasProximas(Carta carta, int i, int j) {
-		if(carta.getTop() > matriz[i-1][j].getBottom()) {
+		if(i-1 >= 0 && carta.getTop() > matriz[i-1][j].getBottom()) {
 			alterarMatriz(carta, i-1, j);
 		}
-		if(carta.getBottom() > matriz[i+1][j].getTop()) {
+		if(i+1 <= 2 && carta.getBottom() > matriz[i+1][j].getTop()) {
 			alterarMatriz(carta, i+1, j);
 		}
-		if(carta.getLeft() > matriz[i][j-1].getRight()) {
+		if(j-1 >= 0 && carta.getLeft() > matriz[i][j-1].getRight()) {
 			alterarMatriz(carta, i, j-1);
 		}
-		if(carta.getRight() > matriz[i][j+1].getLeft()) {
+		if(j+1 <= 2 && carta.getRight() > matriz[i][j+1].getLeft()) {
 			alterarMatriz(carta, i, j+1);
 		}
 	}
@@ -66,7 +67,7 @@ public class Tabuleiro {
 		return false;
 	}
 	
-	public void destribuirCartas(Player player) {
+	public void distribuirCartas(Player player) {
 		Random random = new Random();
 		for(int i = 0; i<5; i++) {
 			int top = random.nextInt(10) +1;
