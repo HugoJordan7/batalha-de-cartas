@@ -55,5 +55,4 @@ public class Carta{
 		this.player = player;
 	}
 	
-	
 }

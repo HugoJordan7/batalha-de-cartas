@@ -10,8 +10,35 @@ public class Util {
 		System.out.println("4 - Ganha a batalha o jogador que possuir mais cartas no tabuleiro quando ele estiver cheio");
 	}
 	
+	public static void imprimirPlacar(Player p1, Player p2) {
+		if(p1.getScore() == p2.getScore()) {
+			System.out.println("\nA batalha entre "+p1.getNome()+" e "+p2.getNome()+" resultou em um empate com " + p1.getScore());
+			return;
+		}
+		
+		Player winner;
+		Player looser;
+		if(p1.getScore() > p2.getScore()) {
+			winner = p1;
+			looser = p2;
+		} else {
+			winner = p2;
+			looser = p1;
+		}
+		System.out.println("\nO vencedor da batalha foi " + winner.getNome() + " com " + winner.getScore() + " pontos");
+		System.out.println("O jogador " + looser.getNome() + " perdeu a batalha com " + looser.getScore() + " pontos");
+	}
+	
 	public static void printRow() {
 		System.out.println("-----------------------------------------------------------------");
+	}
+	
+	public static void imprimirTabuleiro(Tabuleiro tabuleiro) {
+		printRow();
+		for(int i = 0; i < 3; i++) {
+			imprimirCartas(tabuleiro.getLinhaDeCartas(i));
+		}
+		printRow();
 	}
 	
 	public static void imprimirCartas(Carta[] cartas) {

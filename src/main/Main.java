@@ -18,39 +18,28 @@ public class Main{
 			Player currentPlayer;
 			if(i%2 == 0) currentPlayer = player1;
 			else currentPlayer = player2;
-			imprimirTabuleiro(tabuleiro);
+			Util.imprimirTabuleiro(tabuleiro);
 			Util.imprimirCartas(currentPlayer.getCartas());
 			if(!realizarJogada(tabuleiro, currentPlayer)) i--;
 		}
-	
+		Util.imprimirPlacar(player1, player2);
 	}
 	
 	public static boolean realizarJogada(Tabuleiro tabuleiro, Player player) {
 		System.out.print(player.getNome() + " escolha uma carta para jogar: ");
-		int pos = scanner.nextInt();
-		if(pos < 0 || pos > player.getQuantCartas()-1) {
-			System.out.println("Posição de carta inválida!");
-			return false;
-		}
+		int pos = scanner.nextInt() -1;
+		if(!player.isIndexValid(pos)) return false;
 		
 		System.out.print("Informe a linha do tabuleiro: ");
-		int lin = scanner.nextInt();
+		int lin = scanner.nextInt() -1;
 		System.out.print("Informe a coluna do tabuleiro: ");
-		int col = scanner.nextInt();
+		int col = scanner.nextInt() -1;
 		if(!tabuleiro.isIndexValid(lin, col)) return false;
+		if(!tabuleiro.isPlaceEmpty(lin, col)) return false;
 		
 		Carta carta = player.getCarta(pos);
 		player.removerCarta(pos);
 		return tabuleiro.jogarCarta(carta, lin, col);
 	}
 	
-	public static void imprimirTabuleiro(Tabuleiro tabuleiro) {
-		Util.printRow();
-		for(int i = 0; i < 3; i++) {
-			Util.imprimirCartas(tabuleiro.getLinhaDeCartas(i));
-		}
-		Util.printRow();
-	}
-	
 }
-

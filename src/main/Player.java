@@ -11,10 +11,6 @@ public class Player {
 		this.nome = nome;
 	}
 	
-	public int getQuantCartas() {
-		return cartas.size();
-	}
-	
 	public Carta getCarta(int i) {
 		return cartas.get(i);
 	}
@@ -53,6 +49,14 @@ public class Player {
 
 	public int getScore() {
 		return score;
+	}
+	
+	public boolean isIndexValid(int pos) {
+		if(pos < 0 || pos > cartas.size()-1) {
+			System.out.println("Posição de carta inválida!");
+			return false;
+		}
+		return true;
 	}
 	
 }
