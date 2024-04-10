@@ -21,6 +21,10 @@ public class Tabuleiro {
 	public Carta getCarta(int i, int j) {
 		return matriz[i][j];
 	}
+	
+	public Carta[] getLinhaDeCartas(int i) {
+		return matriz[i];
+	}
 
 	public boolean registrarCarta(Carta carta, int i, int j) {
 		if(!isIndexValid(i, j)) return false;

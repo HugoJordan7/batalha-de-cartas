@@ -19,6 +19,14 @@ public class Player {
 		return cartas.get(i);
 	}
 	
+	public Carta[] getCartas() {
+		Carta[] array = new Carta[cartas.size()];
+		for (int i = 0; i < array.length; i++) {
+			array[i] = cartas.get(i);
+		}
+		return array;
+	}
+	
 	public String getNome() {
 		return this.nome;
 	}

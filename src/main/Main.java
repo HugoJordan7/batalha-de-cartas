@@ -22,7 +22,7 @@ public class Main{
 				currentPlayer = player2;
 			}
 			imprimirTabuleiro(tabuleiro);
-			imprimirCartasDoPlayer(currentPlayer);
+			Util.imprimirCartas(currentPlayer.getCartas());
 			if(!realizarJogada(tabuleiro, currentPlayer)) {
 				i--;
 			}
@@ -43,18 +43,9 @@ public class Main{
 	public static void imprimirTabuleiro(Tabuleiro tabuleiro) {
 		Util.printRow();
 		for(int i = 0; i < 3; i++) {
-			Carta carta1 = tabuleiro.getCarta(i, 0);
-			Carta carta2 = tabuleiro.getCarta(i, 1);
-			Carta carta3 = tabuleiro.getCarta(i, 2);
-			Util.imprimirTresCartas(carta1, carta2, carta3);
+			Util.imprimirCartas(tabuleiro.getLinhaDeCartas(i));
 		}
 		Util.printRow();
-	}
-	
-	public static void imprimirCartasDoPlayer(Player player) {
-		for(int i = 0; i < player.getQuantCartas(); i++) {
-			Util.imprimirCarta(player.getCarta(i));
-		}
 	}
 	
 }
