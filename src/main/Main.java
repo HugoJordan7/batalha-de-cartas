@@ -16,16 +16,11 @@ public class Main{
 		
 		for(int i = 0; i<9; i++) {
 			Player currentPlayer;
-			if(i%2 == 0) {
-				currentPlayer = player1;
-			}else {
-				currentPlayer = player2;
-			}
+			if(i%2 == 0) currentPlayer = player1;
+			else currentPlayer = player2;
 			imprimirTabuleiro(tabuleiro);
 			Util.imprimirCartas(currentPlayer.getCartas());
-			if(!realizarJogada(tabuleiro, currentPlayer)) {
-				i--;
-			}
+			if(!realizarJogada(tabuleiro, currentPlayer)) i--;
 		}
 	
 	}
@@ -33,11 +28,20 @@ public class Main{
 	public static boolean realizarJogada(Tabuleiro tabuleiro, Player player) {
 		System.out.print(player.getNome() + " escolha uma carta para jogar: ");
 		int pos = scanner.nextInt();
+		if(pos < 0 || pos > player.getQuantCartas()-1) {
+			System.out.println("Posição de carta inválida!");
+			return false;
+		}
+		
 		System.out.print("Informe a linha do tabuleiro: ");
 		int lin = scanner.nextInt();
 		System.out.print("Informe a coluna do tabuleiro: ");
 		int col = scanner.nextInt();
-		return player.jogarCarta(pos, tabuleiro, lin, col);
+		if(!tabuleiro.isIndexValid(lin, col)) return false;
+		
+		Carta carta = player.getCarta(pos);
+		player.removerCarta(pos);
+		return tabuleiro.jogarCarta(carta, lin, col);
 	}
 	
 	public static void imprimirTabuleiro(Tabuleiro tabuleiro) {

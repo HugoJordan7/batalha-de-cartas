@@ -47,10 +47,8 @@ public class Player {
 		}
 	}
 	
-	public boolean jogarCarta(int pos, Tabuleiro tabuleiro, int i, int j) {
-		boolean isRegistred = tabuleiro.registrarCarta(cartas.get(pos), i, j);
-		if(isRegistred) cartas.remove(pos);
-		return isRegistred;
+	public void removerCarta(int pos) {
+		cartas.remove(pos);
 	}
 
 	public int getScore() {

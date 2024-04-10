@@ -26,8 +26,7 @@ public class Tabuleiro {
 		return matriz[i];
 	}
 
-	public boolean registrarCarta(Carta carta, int i, int j) {
-		if(!isIndexValid(i, j)) return false;
+	public boolean jogarCarta(Carta carta, int i, int j) {
 		if(matriz[i][j].getTop() != 0) {
 			System.out.println("O jogador não pode jogar uma carta em cima de outra!");
 			return false;
@@ -63,7 +62,7 @@ public class Tabuleiro {
 		}
 	}
 	
-	private boolean isIndexValid(int i, int j) {
+	public boolean isIndexValid(int i, int j) {
 		if(i <= 2 && i >= 0 && j <= 2 && j >= 0) {
 			return true;
 		}
