@@ -22,6 +22,7 @@ public class Main{
 			Util.imprimirCartas(currentPlayer.getCartas());
 			if(!realizarJogada(tabuleiro, currentPlayer)) i--;
 		}
+		Util.imprimirTabuleiro(tabuleiro);
 		Util.imprimirPlacar(player1, player2);
 	}
 	

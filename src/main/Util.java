@@ -12,7 +12,7 @@ public class Util {
 	
 	public static void imprimirPlacar(Player p1, Player p2) {
 		if(p1.getScore() == p2.getScore()) {
-			System.out.println("\nA batalha entre "+p1.getNome()+" e "+p2.getNome()+" resultou em um empate com " + p1.getScore());
+			System.out.println("\nA batalha entre "+p1.getNome()+" e "+p2.getNome()+" resultou em um empate com " + p1.getScore() + " pontos");
 			return;
 		}
 		
